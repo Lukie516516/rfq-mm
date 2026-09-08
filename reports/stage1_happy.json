@@ -1,0 +1,189 @@
+{
+  "generated": "2026-09-06T08:09:25.3953059Z",
+  "Market": {
+    "Bid": 600,
+    "Ask": 600.1,
+    "Source": "mock",
+    "Ts": "0001-01-01T00:00:00Z"
+  },
+  "sections": [
+    {
+      "name": "A. happy path",
+      "note": "Both sides fill and flatten. Locked PnL is RFQ spread minus venue half-spread.",
+      "rounds": [
+        {
+          "ID": "1788682165382245700",
+          "Action": "taker_buy",
+          "Status": "filled_hedged",
+          "Reject": "",
+          "HedgeErr": "",
+          "Decisions": [
+            "quote bid=599.85000000 ask=600.25000000 skew=0.00000000 half=0.20000000 ttl=0s",
+            "rfq mm_sell qty=1.00000000 px=600.25000000",
+            "hedge mm_buy qty=1.00000000 px=600.11000000 order=0"
+          ],
+          "Market": {
+            "Bid": 600,
+            "Ask": 600.1,
+            "Source": "mock",
+            "Ts": "0001-01-01T00:00:00Z"
+          },
+          "Quote": {
+            "Bid": 599.8499999999999,
+            "Ask": 600.25,
+            "Mid": 600.05,
+            "Reservation": 600.05,
+            "HalfSpread": 0.20000000000001136,
+            "VenueHalf": 0.05000000000001137,
+            "Skew": 0,
+            "Qty": 1,
+            "BidEnabled": true,
+            "AskEnabled": true,
+            "Expires": "0001-01-01T00:00:00Z"
+          },
+          "RFQ": {
+            "Source": "rfq",
+            "Side": "sell",
+            "Price": 600.25,
+            "Qty": 1,
+            "Fee": 0,
+            "TheoryPx": 0,
+            "OrderID": 0,
+            "ClientOrderID": ""
+          },
+          "Hedge": {
+            "Source": "hedge",
+            "Side": "buy",
+            "Price": 600.11,
+            "Qty": 1,
+            "Fee": 0,
+            "TheoryPx": 600.1,
+            "OrderID": 0,
+            "ClientOrderID": ""
+          },
+          "AfterRFQ": {
+            "BNB": -1,
+            "USDT": 600.25,
+            "AvgPx": 600.25,
+            "Mark": 600.05,
+            "Equity": 0.20000000000004547,
+            "Realized": 0,
+            "Unrealized": 0.20000000000004547,
+            "FeePaid": 0
+          },
+          "AfterHedge": {
+            "BNB": 0,
+            "USDT": 0.14,
+            "AvgPx": 0,
+            "Mark": 600.05,
+            "Equity": 0.14,
+            "Realized": 0.14,
+            "Unrealized": 0,
+            "FeePaid": 0
+          },
+          "Start": {
+            "BNB": 0,
+            "USDT": 0,
+            "AvgPx": 0,
+            "Mark": 600.05,
+            "Equity": 0,
+            "Realized": 0,
+            "Unrealized": 0,
+            "FeePaid": 0
+          }
+        },
+        {
+          "ID": "1788682165382764100",
+          "Action": "taker_sell",
+          "Status": "filled_hedged",
+          "Reject": "",
+          "HedgeErr": "",
+          "Decisions": [
+            "quote bid=599.85000000 ask=600.25000000 skew=0.00000000 half=0.20000000 ttl=0s",
+            "rfq mm_buy qty=1.00000000 px=599.85000000",
+            "hedge mm_sell qty=1.00000000 px=599.99000000 order=0"
+          ],
+          "Market": {
+            "Bid": 600,
+            "Ask": 600.1,
+            "Source": "mock",
+            "Ts": "0001-01-01T00:00:00Z"
+          },
+          "Quote": {
+            "Bid": 599.8499999999999,
+            "Ask": 600.25,
+            "Mid": 600.05,
+            "Reservation": 600.05,
+            "HalfSpread": 0.20000000000001136,
+            "VenueHalf": 0.05000000000001137,
+            "Skew": 0,
+            "Qty": 1,
+            "BidEnabled": true,
+            "AskEnabled": true,
+            "Expires": "0001-01-01T00:00:00Z"
+          },
+          "RFQ": {
+            "Source": "rfq",
+            "Side": "buy",
+            "Price": 599.8499999999999,
+            "Qty": 1,
+            "Fee": 0,
+            "TheoryPx": 0,
+            "OrderID": 0,
+            "ClientOrderID": ""
+          },
+          "Hedge": {
+            "Source": "hedge",
+            "Side": "sell",
+            "Price": 599.99,
+            "Qty": 1,
+            "Fee": 0,
+            "TheoryPx": 600,
+            "OrderID": 0,
+            "ClientOrderID": ""
+          },
+          "AfterRFQ": {
+            "BNB": 1,
+            "USDT": -599.71,
+            "AvgPx": 599.85,
+            "Mark": 600.05,
+            "Equity": 0.33999999999991815,
+            "Realized": 0.14,
+            "Unrealized": 0.1999999999999318,
+            "FeePaid": 0
+          },
+          "AfterHedge": {
+            "BNB": 0,
+            "USDT": 0.28,
+            "AvgPx": 0,
+            "Mark": 600.05,
+            "Equity": 0.28,
+            "Realized": 0.28,
+            "Unrealized": 0,
+            "FeePaid": 0
+          },
+          "Start": {
+            "BNB": 0,
+            "USDT": 0.14,
+            "AvgPx": 0,
+            "Mark": 600.05,
+            "Equity": 0.14,
+            "Realized": 0.14,
+            "Unrealized": 0,
+            "FeePaid": 0
+          }
+        }
+      ],
+      "final": {
+        "BNB": 0,
+        "USDT": 0.28,
+        "AvgPx": 0,
+        "Mark": 600.05,
+        "Equity": 0.28,
+        "Realized": 0.28,
+        "Unrealized": 0,
+        "FeePaid": 0
+      }
+    }
+  ]
+}

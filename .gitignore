@@ -1,0 +1,12 @@
+tools/
+*.exe
+*.test
+*.out
+.idea/
+.vscode/
+.env
+.env.local
+reports/journal_*.jsonl
+reports/orders.json
+reports/orders.json.tmp
+KILL

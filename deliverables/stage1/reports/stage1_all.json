@@ -1,0 +1,377 @@
+{
+  "generated": "2026-09-06T05:33:31.3635801Z",
+  "Market": {
+    "Bid": 600,
+    "Ask": 600.1,
+    "Source": "mock"
+  },
+  "sections": [
+    {
+      "name": "A. happy path",
+      "note": "Both sides fill and flatten. Locked PnL is RFQ spread minus venue half-spread.",
+      "rounds": [
+        {
+          "Action": "taker_buy",
+          "Status": "filled_hedged",
+          "Reject": "",
+          "HedgeErr": "",
+          "Market": {
+            "Bid": 600,
+            "Ask": 600.1,
+            "Source": "mock"
+          },
+          "Quote": {
+            "Bid": 599.8499999999999,
+            "Ask": 600.25,
+            "Mid": 600.05,
+            "Reservation": 600.05,
+            "HalfSpread": 0.20000000000001136,
+            "VenueHalf": 0.05000000000001137,
+            "Skew": 0,
+            "Qty": 1,
+            "BidEnabled": true,
+            "AskEnabled": true
+          },
+          "RFQ": {
+            "Source": "rfq",
+            "Side": "sell",
+            "Price": 600.25,
+            "Qty": 1,
+            "Fee": 0
+          },
+          "Hedge": {
+            "Source": "hedge",
+            "Side": "buy",
+            "Price": 600.1,
+            "Qty": 1,
+            "Fee": 0
+          },
+          "AfterRFQ": {
+            "BNB": -1,
+            "USDT": 600.25,
+            "AvgPx": 600.25,
+            "Mark": 600.05,
+            "Equity": 0.20000000000004547,
+            "Realized": 0,
+            "Unrealized": 0.20000000000004547,
+            "FeePaid": 0
+          },
+          "AfterHedge": {
+            "BNB": 0,
+            "USDT": 0.14999999999997726,
+            "AvgPx": 0,
+            "Mark": 600.05,
+            "Equity": 0.14999999999997726,
+            "Realized": 0.14999999999997726,
+            "Unrealized": 0,
+            "FeePaid": 0
+          },
+          "Start": {
+            "BNB": 0,
+            "USDT": 0,
+            "AvgPx": 0,
+            "Mark": 600.05,
+            "Equity": 0,
+            "Realized": 0,
+            "Unrealized": 0,
+            "FeePaid": 0
+          }
+        },
+        {
+          "Action": "taker_sell",
+          "Status": "filled_hedged",
+          "Reject": "",
+          "HedgeErr": "",
+          "Market": {
+            "Bid": 600,
+            "Ask": 600.1,
+            "Source": "mock"
+          },
+          "Quote": {
+            "Bid": 599.8499999999999,
+            "Ask": 600.25,
+            "Mid": 600.05,
+            "Reservation": 600.05,
+            "HalfSpread": 0.20000000000001136,
+            "VenueHalf": 0.05000000000001137,
+            "Skew": 0,
+            "Qty": 1,
+            "BidEnabled": true,
+            "AskEnabled": true
+          },
+          "RFQ": {
+            "Source": "rfq",
+            "Side": "buy",
+            "Price": 599.8499999999999,
+            "Qty": 1,
+            "Fee": 0
+          },
+          "Hedge": {
+            "Source": "hedge",
+            "Side": "sell",
+            "Price": 600,
+            "Qty": 1,
+            "Fee": 0
+          },
+          "AfterRFQ": {
+            "BNB": 1,
+            "USDT": -599.6999999999999,
+            "AvgPx": 599.8499999999999,
+            "Mark": 600.05,
+            "Equity": 0.35000000000002274,
+            "Realized": 0.14999999999997726,
+            "Unrealized": 0.20000000000004547,
+            "FeePaid": 0
+          },
+          "AfterHedge": {
+            "BNB": 0,
+            "USDT": 0.3000000000000682,
+            "AvgPx": 0,
+            "Mark": 600.05,
+            "Equity": 0.3000000000000682,
+            "Realized": 0.3000000000000682,
+            "Unrealized": 0,
+            "FeePaid": 0
+          },
+          "Start": {
+            "BNB": 0,
+            "USDT": 0.14999999999997726,
+            "AvgPx": 0,
+            "Mark": 600.05,
+            "Equity": 0.14999999999997726,
+            "Realized": 0.14999999999997726,
+            "Unrealized": 0,
+            "FeePaid": 0
+          }
+        }
+      ],
+      "final": {
+        "BNB": 0,
+        "USDT": 0.3000000000000682,
+        "AvgPx": 0,
+        "Mark": 600.05,
+        "Equity": 0.3000000000000682,
+        "Realized": 0.3000000000000682,
+        "Unrealized": 0,
+        "FeePaid": 0
+      }
+    },
+    {
+      "name": "B. hedge fail + skew + reject",
+      "note": "Failed hedge leaves inventory. Next quote skews. Oversize is rejected and does not fill.",
+      "rounds": [
+        {
+          "Action": "taker_sell",
+          "Status": "filled_unhedged",
+          "Reject": "",
+          "HedgeErr": "binance timeout",
+          "Market": {
+            "Bid": 600,
+            "Ask": 600.1,
+            "Source": "mock"
+          },
+          "Quote": {
+            "Bid": 599.8499999999999,
+            "Ask": 600.25,
+            "Mid": 600.05,
+            "Reservation": 600.05,
+            "HalfSpread": 0.20000000000001136,
+            "VenueHalf": 0.05000000000001137,
+            "Skew": 0,
+            "Qty": 1,
+            "BidEnabled": true,
+            "AskEnabled": true
+          },
+          "RFQ": {
+            "Source": "rfq",
+            "Side": "buy",
+            "Price": 599.8499999999999,
+            "Qty": 1,
+            "Fee": 0
+          },
+          "Hedge": {
+            "Source": "",
+            "Side": "",
+            "Price": 0,
+            "Qty": 0,
+            "Fee": 0
+          },
+          "AfterRFQ": {
+            "BNB": 1,
+            "USDT": -599.8499999999999,
+            "AvgPx": 599.8499999999999,
+            "Mark": 600.05,
+            "Equity": 0.20000000000004547,
+            "Realized": 0,
+            "Unrealized": 0.20000000000004547,
+            "FeePaid": 0
+          },
+          "AfterHedge": {
+            "BNB": 1,
+            "USDT": -599.8499999999999,
+            "AvgPx": 599.8499999999999,
+            "Mark": 600.05,
+            "Equity": 0.20000000000004547,
+            "Realized": 0,
+            "Unrealized": 0.20000000000004547,
+            "FeePaid": 0
+          },
+          "Start": {
+            "BNB": 0,
+            "USDT": 0,
+            "AvgPx": 0,
+            "Mark": 600.05,
+            "Equity": 0,
+            "Realized": 0,
+            "Unrealized": 0,
+            "FeePaid": 0
+          }
+        },
+        {
+          "Action": "taker_buy",
+          "Status": "filled_hedged",
+          "Reject": "",
+          "HedgeErr": "",
+          "Market": {
+            "Bid": 600,
+            "Ask": 600.1,
+            "Source": "mock"
+          },
+          "Quote": {
+            "Bid": 599.8,
+            "Ask": 600.2,
+            "Mid": 600.05,
+            "Reservation": 600,
+            "HalfSpread": 0.20000000000001136,
+            "VenueHalf": 0.05000000000001137,
+            "Skew": 0.05,
+            "Qty": 1,
+            "BidEnabled": true,
+            "AskEnabled": true
+          },
+          "RFQ": {
+            "Source": "rfq",
+            "Side": "sell",
+            "Price": 600.2,
+            "Qty": 1,
+            "Fee": 0
+          },
+          "Hedge": {
+            "Source": "",
+            "Side": "",
+            "Price": 0,
+            "Qty": 0,
+            "Fee": 0
+          },
+          "AfterRFQ": {
+            "BNB": 0,
+            "USDT": 0.3500000000001364,
+            "AvgPx": 0,
+            "Mark": 600.05,
+            "Equity": 0.3500000000001364,
+            "Realized": 0.3500000000001364,
+            "Unrealized": 0,
+            "FeePaid": 0
+          },
+          "AfterHedge": {
+            "BNB": 0,
+            "USDT": 0.3500000000001364,
+            "AvgPx": 0,
+            "Mark": 600.05,
+            "Equity": 0.3500000000001364,
+            "Realized": 0.3500000000001364,
+            "Unrealized": 0,
+            "FeePaid": 0
+          },
+          "Start": {
+            "BNB": 1,
+            "USDT": -599.8499999999999,
+            "AvgPx": 599.8499999999999,
+            "Mark": 600.05,
+            "Equity": 0.20000000000004547,
+            "Realized": 0,
+            "Unrealized": 0.20000000000004547,
+            "FeePaid": 0
+          }
+        },
+        {
+          "Action": "taker_buy",
+          "Status": "rejected",
+          "Reject": "qty 9.00000000 exceeds max order 5.00000000",
+          "HedgeErr": "",
+          "Market": {
+            "Bid": 600,
+            "Ask": 600.1,
+            "Source": "mock"
+          },
+          "Quote": {
+            "Bid": 599.8499999999999,
+            "Ask": 600.25,
+            "Mid": 600.05,
+            "Reservation": 600.05,
+            "HalfSpread": 0.20000000000001136,
+            "VenueHalf": 0.05000000000001137,
+            "Skew": 0,
+            "Qty": 9,
+            "BidEnabled": true,
+            "AskEnabled": true
+          },
+          "RFQ": {
+            "Source": "",
+            "Side": "",
+            "Price": 0,
+            "Qty": 0,
+            "Fee": 0
+          },
+          "Hedge": {
+            "Source": "",
+            "Side": "",
+            "Price": 0,
+            "Qty": 0,
+            "Fee": 0
+          },
+          "AfterRFQ": {
+            "BNB": 0,
+            "USDT": 0,
+            "AvgPx": 0,
+            "Mark": 0,
+            "Equity": 0,
+            "Realized": 0,
+            "Unrealized": 0,
+            "FeePaid": 0
+          },
+          "AfterHedge": {
+            "BNB": 0,
+            "USDT": 0,
+            "AvgPx": 0,
+            "Mark": 0,
+            "Equity": 0,
+            "Realized": 0,
+            "Unrealized": 0,
+            "FeePaid": 0
+          },
+          "Start": {
+            "BNB": 0,
+            "USDT": 0.3500000000001364,
+            "AvgPx": 0,
+            "Mark": 600.05,
+            "Equity": 0.3500000000001364,
+            "Realized": 0.3500000000001364,
+            "Unrealized": 0,
+            "FeePaid": 0
+          }
+        }
+      ],
+      "final": {
+        "BNB": 0,
+        "USDT": 0.3500000000001364,
+        "AvgPx": 0,
+        "Mark": 600.05,
+        "Equity": 0.3500000000001364,
+        "Realized": 0.3500000000001364,
+        "Unrealized": 0,
+        "FeePaid": 0
+      }
+    }
+  ]
+}

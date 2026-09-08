@@ -1,0 +1,23 @@
+RFQ MM Stage 1
+market source=mock bid=600.0000 ask=600.1000 mid=600.0500 venue_spread=0.1000
+quote = reservation ± (venue_half + 2*fee + profit_pad); reservation = mid - skew*inventory
+
+## A. happy path
+Both sides fill and flatten. Locked PnL is RFQ spread minus venue half-spread.
+
+--- round 1: taker_buy [filled_hedged] ---
+1) quote   bid=599.8500 ask=600.2500 mid=600.0500 reservation=600.0500 half=0.2000 skew=0.0000 bid_on=true ask_on=true
+2) fill    taker=taker_buy => MM sell 1.0000 @ 600.2500
+   after RFQ   bnb=-1.0000 usdt=+600.2500 realized=0.0000 unrealized=0.2000 equity=0.2000
+3) hedge   MM buy 1.0000 @ 600.1100
+4) book    bnb=+0.0000 usdt=+0.1400 realized=0.1400 unrealized=0.0000 equity=0.1400
+
+--- round 2: taker_sell [filled_hedged] ---
+1) quote   bid=599.8500 ask=600.2500 mid=600.0500 reservation=600.0500 half=0.2000 skew=0.0000 bid_on=true ask_on=true
+2) fill    taker=taker_sell => MM buy 1.0000 @ 599.8500
+   after RFQ   bnb=+1.0000 usdt=-599.7100 realized=0.1400 unrealized=0.2000 equity=0.3400
+3) hedge   MM sell 1.0000 @ 599.9900
+4) book    bnb=+0.0000 usdt=+0.2800 realized=0.2800 unrealized=0.0000 equity=0.2800
+
+final bnb=+0.00000000 usdt=+0.28000000 realized=0.28000000 unrealized=0.00000000 equity=0.28000000
+

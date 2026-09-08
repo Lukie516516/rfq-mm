@@ -1,0 +1,45 @@
+RFQ MM Stage 1
+market source=mock bid=600.0000 ask=600.1000 mid=600.0500 venue_spread=0.1000
+quote = reservation ± (venue_half + 2*fee + profit_pad); reservation = mid - skew*inventory
+
+## A. happy path
+Both sides fill and flatten. Locked PnL is RFQ spread minus venue half-spread.
+
+--- round 1: taker_buy [filled_hedged] ---
+1) quote   bid=599.8500 ask=600.2500 mid=600.0500 reservation=600.0500 half=0.2000 skew=0.0000 bid_on=true ask_on=true
+2) fill    taker=taker_buy => MM sell 1.0000 @ 600.2500
+   after RFQ   bnb=-1.0000 usdt=+600.2500 realized=0.0000 unrealized=0.2000 equity=0.2000
+3) hedge   MM buy 1.0000 @ 600.1000
+4) book    bnb=+0.0000 usdt=+0.1500 realized=0.1500 unrealized=0.0000 equity=0.1500
+
+--- round 2: taker_sell [filled_hedged] ---
+1) quote   bid=599.8500 ask=600.2500 mid=600.0500 reservation=600.0500 half=0.2000 skew=0.0000 bid_on=true ask_on=true
+2) fill    taker=taker_sell => MM buy 1.0000 @ 599.8500
+   after RFQ   bnb=+1.0000 usdt=-599.7000 realized=0.1500 unrealized=0.2000 equity=0.3500
+3) hedge   MM sell 1.0000 @ 600.0000
+4) book    bnb=+0.0000 usdt=+0.3000 realized=0.3000 unrealized=0.0000 equity=0.3000
+
+final bnb=+0.00000000 usdt=+0.30000000 realized=0.30000000 unrealized=0.00000000 equity=0.30000000
+
+## B. hedge fail + skew + reject
+Failed hedge leaves inventory. Next quote skews. Oversize is rejected and does not fill.
+
+--- round 1: taker_sell [filled_unhedged] ---
+1) quote   bid=599.8500 ask=600.2500 mid=600.0500 reservation=600.0500 half=0.2000 skew=0.0000 bid_on=true ask_on=true
+2) fill    taker=taker_sell => MM buy 1.0000 @ 599.8500
+   after RFQ   bnb=+1.0000 usdt=-599.8500 realized=0.0000 unrealized=0.2000 equity=0.2000
+3) hedge   FAILED: binance timeout
+4) book    bnb=+1.0000 usdt=-599.8500 realized=0.0000 unrealized=0.2000 equity=0.2000
+
+--- round 2: taker_buy [filled_hedged] ---
+1) quote   bid=599.8000 ask=600.2000 mid=600.0500 reservation=600.0000 half=0.2000 skew=0.0500 bid_on=true ask_on=true
+2) fill    taker=taker_buy => MM sell 1.0000 @ 600.2000
+   after RFQ   bnb=+0.0000 usdt=+0.3500 realized=0.3500 unrealized=0.0000 equity=0.3500
+3) hedge   skip (already flat after RFQ)
+4) book    bnb=+0.0000 usdt=+0.3500 realized=0.3500 unrealized=0.0000 equity=0.3500
+
+--- round 3: taker_buy [rejected] ---
+1) quote   bid=599.8500 ask=600.2500 mid=600.0500 reservation=600.0500 half=0.2000 skew=0.0000 bid_on=true ask_on=true
+2) reject  qty 9.00000000 exceeds max order 5.00000000
+
+final bnb=+0.00000000 usdt=+0.35000000 realized=0.35000000 unrealized=0.00000000 equity=0.35000000

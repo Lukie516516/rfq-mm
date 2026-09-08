@@ -1,0 +1,95 @@
+RFQ MM Stage 2 — dry-run
+base=https://testnet.binance.vision symbol=BNBUSDT send=false generated=2026-09-08T19:43:40+08:00
+
+venue source=https://testnet.binance.vision
+book bid=751.82000000 ask=751.83000000 mid=751.82500000
+filters tick=0.01 step=0.001 minQty=0.001 minNotional=5
+
+## engine round taker_buy qty=0.007 send=false status=filled_hedged
+rfq mm_side=sell px=751.98000000 qty=0.00700000
+hedge source=hedge-dryrun mm_side=buy px=751.83000000 qty=0.00700000 order=0 client= slip=0.00000000
+decisions: quote bid=751.67000000 ask=751.98000000 skew=0.00000000 half=0.15500000 ttl=0s | rfq mm_sell qty=0.00700000 px=751.98000000 | hedge mm_buy qty=0.00700000 px=751.83000000 order=0
+after hedge bnb=+0.00000000 usdt=+0.00105000 realized=0.00105000 equity=0.00105000
+
+desk rounds=1 rejects=0 hedge_fails=0 avg_slip=0.00000000 total_pnl=0.00105000
+{
+  "ID": "1788867822171057300",
+  "Action": "taker_buy",
+  "Status": "filled_hedged",
+  "Reject": "",
+  "HedgeErr": "",
+  "Decisions": [
+    "quote bid=751.67000000 ask=751.98000000 skew=0.00000000 half=0.15500000 ttl=0s",
+    "rfq mm_sell qty=0.00700000 px=751.98000000",
+    "hedge mm_buy qty=0.00700000 px=751.83000000 order=0"
+  ],
+  "Market": {
+    "Bid": 751.82,
+    "Ask": 751.83,
+    "Source": "https://testnet.binance.vision",
+    "Ts": "2026-09-08T11:43:42.1710573Z"
+  },
+  "Quote": {
+    "Bid": 751.6700000000001,
+    "Ask": 751.98,
+    "Mid": 751.825,
+    "Reservation": 751.825,
+    "HalfSpread": 0.15499999999999545,
+    "VenueHalf": 0.0049999999999954525,
+    "Skew": 0,
+    "Qty": 0.007,
+    "BidEnabled": true,
+    "AskEnabled": true,
+    "Expires": "0001-01-01T00:00:00Z"
+  },
+  "RFQ": {
+    "Source": "rfq",
+    "Side": "sell",
+    "Price": 751.98,
+    "Qty": 0.007,
+    "Fee": 0,
+    "TheoryPx": 0,
+    "OrderID": 0,
+    "ClientOrderID": ""
+  },
+  "Hedge": {
+    "Source": "hedge-dryrun",
+    "Side": "buy",
+    "Price": 751.83,
+    "Qty": 0.007,
+    "Fee": 0,
+    "TheoryPx": 751.83,
+    "OrderID": 0,
+    "ClientOrderID": ""
+  },
+  "AfterRFQ": {
+    "BNB": -0.007,
+    "USDT": 5.26386,
+    "AvgPx": 751.98,
+    "Mark": 751.825,
+    "Equity": 0.0010849999999997806,
+    "Realized": 0,
+    "Unrealized": 0.001084999999999809,
+    "FeePaid": 0
+  },
+  "AfterHedge": {
+    "BNB": 0,
+    "USDT": 0.00105,
+    "AvgPx": 0,
+    "Mark": 751.825,
+    "Equity": 0.00105,
+    "Realized": 0.00105,
+    "Unrealized": 0,
+    "FeePaid": 0
+  },
+  "Start": {
+    "BNB": 0,
+    "USDT": 0,
+    "AvgPx": 0,
+    "Mark": 751.825,
+    "Equity": 0,
+    "Realized": 0,
+    "Unrealized": 0,
+    "FeePaid": 0
+  }
+}

@@ -1,0 +1,14 @@
+RFQ MM Stage 2 — fail
+base=https://testnet.binance.vision symbol=BNBUSDT send=true generated=2026-09-06T13:50:45+08:00
+
+venue source=https://testnet.binance.vision
+book bid=761.97000000 ask=761.98000000 mid=761.97500000
+filters tick=0.01 step=0.001 minQty=0.001 minNotional=5
+
+## manufactured filter failure (local)
+LOT_SIZE reject: qty 1.0000001 is not a multiple of stepSize 0.001
+MIN_NOTIONAL reject: notional 0.76198000 = qty 0.001 * px 761.98 below minNotional 5
+
+## exchange failure
+sending unaligned MARKET qty=1.0000001 on purpose
+exchange rejected: binance http 400 code -1013: Filter failure: LOT_SIZE

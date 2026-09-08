@@ -1,0 +1,14 @@
+{
+  "rounds": 1,
+  "rejects": 0,
+  "hedge_fails": 0,
+  "fills": 1,
+  "reject_rate": 0,
+  "hedge_fail_rate": 0,
+  "unhedged_seconds": 0,
+  "avg_slip": 0,
+  "spread_pnl": 0.00105,
+  "fee_pnl": 0,
+  "inventory_pnl": 0,
+  "total_pnl": 0.00105
+}

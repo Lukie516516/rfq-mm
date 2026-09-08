@@ -1,0 +1,12 @@
+RFQ MM Stage 2 — public
+base=https://testnet.binance.vision symbol=BNBUSDT send=false generated=2026-09-08T19:43:35+08:00
+
+venue source=https://testnet.binance.vision
+book bid=751.82000000 ask=751.83000000 mid=751.82500000
+filters tick=0.01 step=0.001 minQty=0.001 minNotional=5
+
+## why theory qty cannot be sent raw
+theory qty=1.00070000  aligned=1  err=<nil>
+min hedge qty at ask 751.8300 = 0.007 err=<nil>
+choice: REST bookTicker + REST exchangeInfo, not WebSocket.
+hedge is event-driven after an RFQ fill; a streaming book is not required to prove filters and order wiring.
